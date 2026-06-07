@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this replication package, please cite it as below."
+title: "Do Norm Sources Matter? Experimental Evidence from Belgium"
+authors:
+  - family-names: "Mauroy"
+    given-names: "Théo"
+type: dataset
+date-released: 2026-06-07
+repository-code: "https://github.com/peek15/do-norm-sources-matter-experimental-evidence-from-belgium"
+abstract: "Replication package containing oTree experiment code, Stata analysis scripts, and anonymized data for a master's thesis on norm sources and charitable giving in Belgium."
+keywords:
+  - behavioral economics
+  - prosocial behavior
+  - charitable giving
+  - descriptive norms
+  - social identity
+  - experimental economics
+  - Belgium
+license: MIT

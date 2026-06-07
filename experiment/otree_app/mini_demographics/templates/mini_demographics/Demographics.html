@@ -1,0 +1,114 @@
+{% extends "global/Page.html" %}
+
+{% block title %}
+{{ t.title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="mb-3">
+  <label class="form-label" for="id_region"><strong>{{ t.region }}</strong></label>
+  <select name="region" id="id_region" class="form-select" required>
+    <option value="" selected disabled>—</option>
+    {% for val, lab in t.region_choices %}
+      <option value="{{ val }}">{{ lab }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+<div class="mb-3">
+  <label class="form-label" for="id_province"><strong>{{ t.province }}</strong></label>
+  <select name="province" id="id_province" class="form-select" required disabled>
+    <option value="" selected>{{ t.choose_region_first }}</option>
+  </select>
+</div>
+
+<div class="mb-3">
+  <label class="form-label" for="id_gender"><strong>{{ t.gender }}</strong></label>
+  <select name="gender" id="id_gender" class="form-select" required>
+    <option value="" selected disabled>—</option>
+    {% for val, lab in t.gender_choices %}
+      <option value="{{ val }}">{{ lab }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+<div class="mb-3">
+  <label class="form-label"><strong>{{ t.age_group }}</strong></label>
+  <select name="age_group" id="id_age_group" class="form-select" required>
+    <option value="" selected disabled>—</option>
+    {% for val, lab in t.age_choices %}
+      <option value="{{ val }}">{{ lab }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+<div class="mb-3">
+  <label class="form-label"><strong>{{ t.education_level }}</strong></label>
+  <select name="education_level" id="id_education_level" class="form-select" required>
+    <option value="" selected disabled>—</option>
+    {% for val, lab in t.edu_choices %}
+      <option value="{{ val }}">{{ lab }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+<div class="mb-3">
+  <label class="form-label"><strong>{{ t.income_bracket }}</strong></label>
+  <select name="income_bracket" id="id_income_bracket" class="form-select" required>
+    <option value="" selected disabled>—</option>
+    {% for val, lab in t.income_choices %}
+      <option value="{{ val }}">{{ lab }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+{{ next_button }}
+
+<script>
+  (function () {
+    const provinceMap = JSON.parse('{{ province_map_json }}');
+    const regionSelect = document.getElementById("id_region");
+    const provinceSelect = document.getElementById("id_province");
+
+    const TXT_CHOOSE_REGION_FIRST = "{{ t.choose_region_first }}";
+    const TXT_SELECT_PROVINCE = "{{ t.select_province }}";
+
+    function setProvinceOptions(regionKey) {
+      provinceSelect.innerHTML = "";
+
+      if (!regionKey || !(regionKey in provinceMap)) {
+        provinceSelect.disabled = true;
+        const opt = document.createElement("option");
+        opt.value = "";
+        opt.textContent = TXT_CHOOSE_REGION_FIRST;
+        opt.selected = true;
+        provinceSelect.appendChild(opt);
+        return;
+      }
+
+      provinceSelect.disabled = false;
+
+      const placeholder = document.createElement("option");
+      placeholder.value = "";
+      placeholder.textContent = TXT_SELECT_PROVINCE;
+      placeholder.selected = true;
+      placeholder.disabled = true;
+      provinceSelect.appendChild(placeholder);
+
+      for (const pair of provinceMap[regionKey]) {
+        const opt = document.createElement("option");
+        opt.value = pair[0];
+        opt.textContent = pair[1];
+        provinceSelect.appendChild(opt);
+      }
+    }
+
+    setProvinceOptions(regionSelect.value);
+    regionSelect.addEventListener("change", function () {
+      setProvinceOptions(this.value);
+    });
+  })();
+</script>
+
+{% endblock %}

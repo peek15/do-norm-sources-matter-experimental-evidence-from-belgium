@@ -1,0 +1,18 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+{{ t.title }}
+{% endblock %}
+
+{% block content %}
+
+<p><strong>{{ t.choose }}</strong></p>
+
+<div class="mb-3">
+  {{ formfield "language" }}
+</div>
+
+{{ next_button }}
+
+{% endblock %}

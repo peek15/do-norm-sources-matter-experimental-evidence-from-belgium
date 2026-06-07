@@ -1,0 +1,90 @@
+{% extends "global/Page.html" %}
+
+{% block title %}
+{{ t.title_final }}
+{% endblock %}
+
+{% block content %}
+
+<!-- External info check (all participants) -->
+<div class="mb-4">
+  <label class="form-label">
+    <strong>{{ t.looked_up_info }}</strong>
+  </label>
+  <div>
+    <label style="display:block; padding: 6px 0;">
+      <input type="radio" name="looked_up_info" value="1" required>
+      {{ t.yes }}
+    </label>
+    <label style="display:block; padding: 6px 0;">
+      <input type="radio" name="looked_up_info" value="0" required>
+      {{ t.no }}
+    </label>
+  </div>
+</div>
+
+{% if show_recall %}
+<hr>
+
+<!-- Recall bracket question (treated participants only) -->
+<div class="mb-3">
+  <label class="form-label">
+    <strong>{{ recall_bracket_question }}</strong>
+  </label>
+  <div>
+    {% for bracket_value, bracket_label in recall_brackets %}
+    <label style="display:block; padding: 6px 0;">
+      <input type="radio" name="norm_recall_bracket" value="{{ bracket_value }}" required>
+      {{ bracket_label }}
+    </label>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Credibility check: 0–10 slider (treated only) -->
+<div class="mb-4 mt-4">
+  <label class="form-label">
+    <strong>{{ t.norm_credibility }}</strong>
+  </label>
+  <div style="margin-top: 8px;">
+    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #6c757d; margin-bottom: 4px;">
+      <span>{{ t.credibility_low }}</span>
+      <span>{{ t.credibility_high }}</span>
+    </div>
+    <input
+      type="range"
+      id="id_norm_credibility"
+      name="norm_credibility"
+      min="0"
+      max="10"
+      step="1"
+      value="5"
+      style="width: 100%;"
+      oninput="document.getElementById('credibility_val').innerText = this.value;"
+    >
+    <div style="text-align: center; margin-top: 4px;">
+      <strong><span id="credibility_val">5</span> / 10</strong>
+    </div>
+  </div>
+</div>
+
+<!-- Belief update direction (treated only) -->
+<div class="mb-4 mt-4">
+  <label class="form-label">
+    <strong>{{ t.belief_update_question }}</strong>
+  </label>
+  <div>
+    {% for option_value, option_label in belief_options %}
+    <label style="display:block; padding: 6px 0;">
+      <input type="radio" name="belief_update_direction" value="{{ option_value }}" required>
+      {{ option_label }}
+    </label>
+    {% endfor %}
+  </div>
+</div>
+
+{% endif %}
+
+{{ next_button }}
+
+{% endblock %}

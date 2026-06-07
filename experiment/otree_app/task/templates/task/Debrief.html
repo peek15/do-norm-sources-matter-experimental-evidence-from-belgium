@@ -1,0 +1,17 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}{{ t.debrief_title }}{% endblock %}
+
+{% block content %}
+
+<!-- Results summary -->
+<div style="background: #f8f9fa; border-radius: 8px; padding: 16px; margin-bottom: 24px; text-align: center;">
+  <p style="margin: 0; font-size: 1.1rem;">{{ results_sentence }}</p>
+</div>
+
+<p>{{ t.debrief_body }}</p>
+
+<p class="text-muted small mt-4">{{ t.debrief_contact }}</p>
+
+{% endblock %}

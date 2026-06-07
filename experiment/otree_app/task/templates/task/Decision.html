@@ -1,0 +1,71 @@
+{% extends "global/Page.html" %}
+
+{% block title %}
+{{ t.title_decision }}
+{% endblock %}
+
+{% block content %}
+
+<p>{{ p_context }}</p>
+
+{% if show_norm %}
+  <div class="alert alert-info" style="border-left: 4px solid #0d6efd;">
+    <p style="margin-bottom: {% if p_norm_pct %}6px{% else %}0{% endif %};">{{ p_norm }}</p>
+    {% if p_norm_pct %}
+      <p class="text-muted small" style="margin-bottom: 0;">{{ p_norm_pct }}</p>
+    {% endif %}
+  </div>
+{% else %}
+  <p class="text-muted">{{ p_filler }}</p>
+{% endif %}
+
+<hr>
+
+<p><strong>{{ amount_donated_label }}</strong></p>
+
+<div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #666; margin-bottom: 4px;">
+  <span>{{ t.donated }}: <span id="donation_label">50</span> €</span>
+  <span>{{ t.kept_label }}: <span id="keep_label">50</span> €</span>
+</div>
+
+<input
+  type="range"
+  id="id_donation"
+  name="donation"
+  min="0"
+  max="{{ endowment }}"
+  step="1"
+  value="50"
+  style="width: 100%;"
+  oninput="updateDonation(this.value);"
+>
+
+<div style="display: flex; gap: 16px; margin-top: 16px;">
+  <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 12px; text-align: center;">
+    <div style="font-size: 0.85rem; color: #666;">{{ t.donated }}</div>
+    <div style="font-size: 1.5rem; font-weight: bold; color: #0d6efd;">
+      <span id="donation_value">50</span> €
+    </div>
+  </div>
+  <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 12px; text-align: center;">
+    <div style="font-size: 0.85rem; color: #666;">{{ t.kept_label }}</div>
+    <div style="font-size: 1.5rem; font-weight: bold; color: #198754;">
+      <span id="keep_value">50</span> €
+    </div>
+  </div>
+</div>
+
+<script>
+  function updateDonation(val) {
+    var v = parseInt(val) || 0;
+    document.getElementById('donation_value').innerText = v;
+    document.getElementById('donation_label').innerText = v;
+    document.getElementById('keep_value').innerText = {{ endowment }} - v;
+    document.getElementById('keep_label').innerText = {{ endowment }} - v;
+  }
+</script>
+
+<br>
+{{ next_button }}
+
+{% endblock %}

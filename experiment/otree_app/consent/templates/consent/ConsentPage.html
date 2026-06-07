@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}{{ t.title }}{% endblock %}
+
+{% block content %}
+
+<p>{{ t.body }}</p>
+
+<ul>
+  {% for bullet in t.bullets %}
+  <li>{{ bullet }}</li>
+  {% endfor %}
+</ul>
+
+<p class="text-muted small">{{ t.contact }}</p>
+
+<hr>
+
+<div class="form-check my-3">
+    {{ formfield "consent_given" label=t.checkbox_label }}
+</div>
+
+{{ next_button }}
+
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends "global/Page.html" %}
+
+{% block title %}{{ t.title_battery }}{% endblock %}
+
+{% block content %}
+
+<!-- Identity: attachment to own region -->
+<div class="mb-4">
+  <label class="form-label">
+    <strong>{{ t.identity_strength }} <em>{{ ingroup_label }}</em>?</strong>
+  </label>
+  <div style="margin-top: 8px;">
+    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #6c757d; margin-bottom: 4px;">
+      <span>0 — {{ t.scale_low }}</span>
+      <span>10 — {{ t.scale_high }}</span>
+    </div>
+    <input
+      type="range"
+      id="id_identity_strength"
+      name="identity_strength"
+      min="0" max="10" step="1" value="5"
+      style="width: 100%;"
+      oninput="document.getElementById('id_str_val').innerText = this.value;"
+    >
+    <div style="text-align: center; margin-top: 4px;">
+      <strong><span id="id_str_val">5</span> / 10</strong>
+    </div>
+  </div>
+</div>
+
+<!-- Identity: closeness to other regions -->
+<div class="mb-4">
+  <label class="form-label">
+    <strong>{{ t.outgroup_closeness }} <em>{{ outgroup_label }}</em>?</strong>
+  </label>
+  <div style="margin-top: 8px;">
+    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #6c757d; margin-bottom: 4px;">
+      <span>0 — {{ t.scale_low }}</span>
+      <span>10 — {{ t.scale_high }}</span>
+    </div>
+    <input
+      type="range"
+      id="id_outgroup_closeness"
+      name="outgroup_closeness"
+      min="0" max="10" step="1" value="5"
+      style="width: 100%;"
+      oninput="document.getElementById('outgroup_val').innerText = this.value;"
+    >
+    <div style="text-align: center; margin-top: 4px;">
+      <strong><span id="outgroup_val">5</span> / 10</strong>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Prior belief (annual €, pre-treatment) -->
+<div class="mb-3">
+  <label class="form-label" for="id_prior_belief">
+    <strong>{{ t.prior_belief }}</strong>
+  </label>
+  <div class="input-group" style="max-width: 200px;">
+    <input
+      type="number"
+      name="prior_belief"
+      id="id_prior_belief"
+      class="form-control"
+      min="0"
+      placeholder="0"
+      required
+    >
+    <span class="input-group-text">€</span>
+  </div>
+</div>
+
+<hr>
+
+<!-- Attention check (embedded after belief elicitation) -->
+<div class="mb-4">
+  <label class="form-label"><strong>{{ t.attention_check_q }}</strong></label>
+  <select name="attention_check" id="id_attention_check" class="form-select" style="max-width: 300px;" required>
+    <option value="" selected disabled>—</option>
+    {% for val, lab in t.attention_choices %}
+      <option value="{{ val }}">{{ lab }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+<hr>
+
+<!-- Filler item 1: personal importance of giving (0–10) -->
+<div class="mb-4">
+  <label class="form-label">
+    <strong>{{ t.filler_giving_importance }}</strong>
+  </label>
+  <div style="margin-top: 8px;">
+    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #6c757d; margin-bottom: 4px;">
+      <span>0 — {{ t.filler_importance_low }}</span>
+      <span>10 — {{ t.filler_importance_high }}</span>
+    </div>
+    <input
+      type="range"
+      id="id_filler_giving_importance"
+      name="filler_giving_importance"
+      min="0" max="10" step="1" value="5"
+      style="width: 100%;"
+      oninput="document.getElementById('filler_imp_val').innerText = this.value;"
+    >
+    <div style="text-align: center; margin-top: 4px;">
+      <strong><span id="filler_imp_val">5</span> / 10</strong>
+    </div>
+  </div>
+</div>
+
+<!-- Filler item 2: donated in past 12 months (dropdown, consistent with other questions) -->
+<div class="mb-4">
+  <label class="form-label" for="id_filler_donated_recently">
+    <strong>{{ t.filler_donated_recently }}</strong>
+  </label>
+  <select name="filler_donated_recently" id="id_filler_donated_recently" class="form-select" style="max-width: 300px;" required>
+    <option value="" selected disabled>—</option>
+    <option value="1">{{ t.filler_donated_yes }}</option>
+    <option value="0">{{ t.filler_donated_no }}</option>
+  </select>
+</div>
+
+<!-- Filler item 3: belief about others giving (0–10) -->
+<div class="mb-4">
+  <label class="form-label">
+    <strong>{{ t.filler_others_give }}</strong>
+  </label>
+  <div style="margin-top: 8px;">
+    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #6c757d; margin-bottom: 4px;">
+      <span>0 — {{ t.filler_others_low }}</span>
+      <span>10 — {{ t.filler_others_high }}</span>
+    </div>
+    <input
+      type="range"
+      id="id_filler_others_give"
+      name="filler_others_give"
+      min="0" max="10" step="1" value="5"
+      style="width: 100%;"
+      oninput="document.getElementById('filler_others_val').innerText = this.value;"
+    >
+    <div style="text-align: center; margin-top: 4px;">
+      <strong><span id="filler_others_val">5</span> / 10</strong>
+    </div>
+  </div>
+</div>
+
+{{ next_button }}
+
+{% endblock %}

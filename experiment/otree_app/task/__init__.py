@@ -1,0 +1,1 @@
+# This app uses models.py and pages.py (oTree 6 structure).
