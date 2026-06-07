@@ -17,7 +17,7 @@ From the repository root, open Stata and run:
 
 ```stata
 cd analysis/stata
-do analysisV2.do
+do analysisV3.do
 ```
 
 To regenerate Figure 5.1 separately:

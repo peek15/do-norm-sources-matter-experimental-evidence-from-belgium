@@ -1,10 +1,10 @@
 /* ============================================================
-   MASTER ANALYSIS FILE (V2 — direct-indicator parameterization)
+   MASTER ANALYSIS FILE (V3 — final thesis analysis)
    Belgian Regional Identity & Charitable Giving
    Master's Thesis — Experimental Economics
    ============================================================
    
-   CHANGES FROM V1:
+   Core analysis specification:
    - Models 3 and 4 re-parameterized with direct in-group/out-group
      indicators (ingroup_norm_recipient, outgroup_norm_recipient)
      in place of the Norm × Ingroup interaction.
