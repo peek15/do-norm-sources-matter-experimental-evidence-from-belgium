@@ -45,7 +45,7 @@
      ing_x_id, out_x_id      : interactions for Model 4
      delta_belief            : |prior_belief - norm_score|, treated only
      norm_score              : 309 for FL, 301 for WA, . for control
-     norm_percent            : 1.24 for FL, 1.37 for WA (% of regional income)
+     norm_percent            : 1.42 for FL, 1.57 for WA (% of regional income)
    ============================================================ */
 
 
@@ -113,8 +113,8 @@ label variable delta_belief "Distance: prior belief to norm value (treated only)
 
 * Norm as percentage of average regional income (for robustness check)
 gen norm_percent = .
-replace norm_percent = 1.24 if treat_norm_flanders == 1
-replace norm_percent = 1.37 if treat_norm_wallonia == 1
+replace norm_percent = 1.42 if treat_norm_flanders == 1
+replace norm_percent = 1.57 if treat_norm_wallonia == 1
 label variable norm_percent "Norm as % of regional income (treated only)"
 
 * Direct in-group and out-group indicators (PRIMARY REGRESSION VARIABLES)
@@ -535,8 +535,8 @@ di "Norm magnitude: norm_score coefficient should be small and non-significant"
 
 
 /* ---- 8.2 Norm intensity control (% of income) ---- */
-* The Walloon norm appears as 1.37% of regional income while the
-* Flemish norm appears as 1.24%. Add norm_percent as covariate to
+* The Walloon norm appears as 1.57% of regional income while the
+* Flemish norm appears as 1.42%. Add norm_percent as covariate to
 * check whether estimates are stable.
 
 reg donation ingroup_norm_recipient outgroup_norm_recipient ///
