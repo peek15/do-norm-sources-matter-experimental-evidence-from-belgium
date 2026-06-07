@@ -1,5 +1,7 @@
 # Do Norm Sources Matter? Experimental Evidence from Belgium
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20581409.svg)](https://doi.org/10.5281/zenodo.20581409)
+
 Replication package for Théo Mauroy's master's thesis, *Do Norm Sources Matter? Experimental Evidence from Belgium*.
 
 This repository contains the materials needed to inspect the experimental implementation and reproduce the main Stata analyses from the anonymized thesis dataset.
@@ -50,7 +52,7 @@ The public dataset is anonymized and prepared for analysis. Raw administrative e
 
 If you use this material, please cite:
 
-Mauroy, Théo. 2026. *Do Norm Sources Matter? Experimental Evidence from Belgium*. Master's thesis, UCLouvain, UNamur, and Università degli Studi di Milano.
+Mauroy, Théo. 2026. *Do Norm Sources Matter? Experimental Evidence from Belgium*. Master's thesis, UCLouvain, UNamur, and Università degli Studi di Milano. Replication package: https://doi.org/10.5281/zenodo.20581409
 
 ## License
 
